@@ -1,0 +1,10 @@
+node_modules/*
+npm-debug.log
+.settings/*
+.git/*
+bower_components/*
+dist/*
+app/*
+.DS_Store
+.idea
+.env
