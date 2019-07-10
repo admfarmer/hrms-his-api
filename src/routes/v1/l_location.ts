@@ -20,6 +20,23 @@ router.get('/', async (req: Request, res: Response, next) => {
     }
 });
 
+router.get('/select/:locationId', async (req: Request, res: Response, next) => {
+    let db = req.db;
+    let locationId = req.params.locationId;
+    console.log(locationId);
+
+    try {
+        let rows: any = await locationMoldel.select(db, locationId);
+        if (rows.length) {
+            res.send({ ok: true, rows: rows, code: HttpStatus.OK });
+        } else {
+            res.send({ ok: true, rows: {}, code: HttpStatus.OK });
+        }
+    } catch (error) {
+        res.send({ ok: false, error: error.message, code: HttpStatus.INTERNAL_SERVER_ERROR });
+    }
+});
+
 router.post('/', async (req: Request, res: Response, next) => {
     let db = req.db;
 

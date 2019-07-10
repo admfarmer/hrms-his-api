@@ -15,6 +15,21 @@ export class InciDentModels {
                     .orWhereNull('r.conf_chief')
             })
     }
+
+    select(knex: Knex) {
+        return knex('risk_incident as r')
+            .select('r.*')
+            .select(knex.raw(`l.location_name as location_name`))
+            .select(knex.raw(`i.time_name as time_name`))
+            .innerJoin('l_time as i', 'i.time_id', '=', 'r.time_incident')
+            .innerJoin('l_location as l', 'l.location_id', '=', 'r.location_incident')
+            .where(function () {
+                this.where('r.conf_chief', '0')
+                    .orWhere('r.conf_chief', '=', '')
+                    .orWhereNull('r.conf_chief')
+            })
+            .limit(10)
+    }
     listShow(knex: Knex) {
         return knex('risk_incident as r')
             .select('r.*')

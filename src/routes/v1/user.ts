@@ -24,6 +24,21 @@ router.get('/', async (req: Request, res: Response, next) => {
     }
 });
 
+router.get('/users', async (req: Request, res: Response, next) => {
+    console.log("111111");
+    let db = req.db;
+    try {
+        let rows: any = await userModels.select(db);
+        if (rows.length) {
+            res.send({ ok: true, results: rows, code: HttpStatus.OK });
+        } else {
+            res.send({ ok: true, token: {}, code: HttpStatus.OK });
+        }
+    } catch (error) {
+        res.send({ ok: false, error: error.message, code: HttpStatus.INTERNAL_SERVER_ERROR });
+    }
+});
+
 
 router.post('/password', async (req: Request, res: Response, next) => {
     let db = req.db;

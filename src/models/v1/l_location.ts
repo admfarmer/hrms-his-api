@@ -5,6 +5,10 @@ export class LocationMoldel {
     listall(knex: Knex) {
         return knex('l_location')
     }
+    select(knex: Knex, locationId: any) {
+        return knex('l_location')
+            .where('location_id', locationId)
+    }
 
     add(knex: Knex, data: any) {
         return knex('l_location')

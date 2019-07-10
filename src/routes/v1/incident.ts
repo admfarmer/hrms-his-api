@@ -21,6 +21,21 @@ router.get('/', async (req: Request, res: Response, next) => {
         res.send({ ok: false, error: error.message, code: HttpStatus.INTERNAL_SERVER_ERROR });
     }
 });
+
+router.get('/select', async (req: Request, res: Response, next) => {
+    let db = req.db;
+    try {
+        let rows: any = await inciDentModels.select(db);
+        if (rows.length) {
+            res.send({ ok: true, rows: rows, code: HttpStatus.OK });
+        } else {
+            res.send({ ok: true, rows: {}, code: HttpStatus.OK });
+        }
+    } catch (error) {
+        res.send({ ok: false, error: error.message, code: HttpStatus.INTERNAL_SERVER_ERROR });
+    }
+});
+
 router.get('/selectShow', async (req: Request, res: Response, next) => {
     let db = req.db;
     try {

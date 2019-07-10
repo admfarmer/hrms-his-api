@@ -8,6 +8,12 @@ export class UserModels {
             .from('risk_user')
             .innerJoin('risk_person', { 'risk_person.idcard': 'risk_user.idcard' })
     }
+    select(knex: Knex) {
+        return knex.select('risk_user.*', 'risk_person.title', 'risk_person.first_name', 'risk_person.last_name')
+            .from('risk_user')
+            .innerJoin('risk_person', { 'risk_person.idcard': 'risk_user.idcard' })
+            .limit(10)
+    }
 
     listpass(knex: Knex, idcard: any) {
         return knex('risk_user')
