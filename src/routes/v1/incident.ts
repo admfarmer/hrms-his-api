@@ -3,9 +3,13 @@ import * as moment from 'moment';
 import { Router, Request, Response } from 'express';
 import * as HttpStatus from 'http-status-codes';
 import { InciDentModels } from '../../models/v1/incident';
+import { LocationMoldel } from '../../models/v1/l_location';
+import { BotlineModel } from '../../models/botline'
 
 const router: Router = Router();
 const inciDentModels = new InciDentModels();
+const locationMoldel = new LocationMoldel();
+const botlineModel = new BotlineModel();
 
 /* GET home page. */
 router.get('/', async (req: Request, res: Response, next) => {
@@ -253,6 +257,7 @@ router.post('/', async (req: Request, res: Response, next) => {
     let id_type = req.body.id_type;
     let id_notype = req.body.id_notype;
     let code_account = req.body.code_account;
+    let affected_id = req.body.affected_id;
     let sex_incident = req.body.sex_incident;
     let age_incident = req.body.age_incident;
     let location_incident = req.body.location_incident;
@@ -281,6 +286,7 @@ router.post('/', async (req: Request, res: Response, next) => {
         id_type: id_type,
         id_notype: id_notype,
         code_account: code_account,
+        affected_id: affected_id,
         sex_incident: sex_incident,
         age_incident: age_incident,
         location_incident: location_incident,
@@ -302,7 +308,20 @@ router.post('/', async (req: Request, res: Response, next) => {
     try {
         let rows: any = await inciDentModels.add(db, datas);
         if (rows.length) {
+
+            const loc: any = await locationMoldel.select(db, location_incident);
+            console.log(loc);
+            console.log(loc[0].location_name);
+
+            let message1 = loc[0].location_name;
+            let message2 = agents_involved;
+            let message3 = code_level;
+            let messages = 'สถานที่เกิด : [' + message1 + '] สรุปความเสียง : [' + message2 + '] ความรุ่นแรงระดับ :  [' + message3 + ']';
+            // console.log(messages);
+            const rsx: any = botlineModel.botLine(messages);
+
             res.send({ ok: true, rows: rows, code: HttpStatus.OK });
+
         } else {
             res.send({ ok: true, rows: {}, code: HttpStatus.OK });
         }
@@ -324,6 +343,7 @@ router.put('/', async (req: Request, res: Response, next) => {
     let id_type = req.body.id_type;
     let id_notype = req.body.id_notype;
     let code_account = req.body.code_account;
+    let affected_id = req.body.affected_id;
     let sex_incident = req.body.sex_incident;
     let age_incident = req.body.age_incident;
     let location_incident = req.body.location_incident;
@@ -353,6 +373,7 @@ router.put('/', async (req: Request, res: Response, next) => {
         id_type: id_type,
         id_notype: id_notype,
         code_account: code_account,
+        affected_id: affected_id,
         sex_incident: sex_incident,
         age_incident: age_incident,
         location_incident: location_incident,
