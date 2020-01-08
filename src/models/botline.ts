@@ -1,6 +1,8 @@
 const request = require("request");
 export class BotlineModel {
     botLine(message) {
+        console.log('xxxxx');
+
         request({
             method: 'POST',
             uri: 'https://notify-api.line.me/api/notify',
@@ -8,7 +10,8 @@ export class BotlineModel {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             auth: {
-                bearer: 'TPQG4mGOTMb2xbZJVqBBlzVmEBrkWgHhRF1d2E3Ono8', //token
+                // bearer: 'Rq2ta2TqDemOz5vak601weoXiq4VSrsSKKPm4GgO9G0', //token
+                bearer: '', //token
             },
             form: {
                 message: message, //ข้อความที่จะส่ง

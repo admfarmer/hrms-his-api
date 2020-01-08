@@ -307,7 +307,9 @@ router.post('/', async (req: Request, res: Response, next) => {
     }
     try {
         let rows: any = await inciDentModels.add(db, datas);
-        if (rows.length) {
+        console.log(rows);
+
+        if (rows[0]) {
 
             const loc: any = await locationMoldel.select(db, location_incident);
             console.log(loc);
