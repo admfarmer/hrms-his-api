@@ -51,7 +51,12 @@ export class InciDentModels {
             .where(function () {
                 this.where('r.conf_chief', '1')
                     .andWhere('r.dep_res_id', '=', '93')
+            }).andWhere(function () {
+                this.orWhere('r.conf_output', '=', '0')
+                    .orWhere('r.conf_output', '=', '')
+                    .orWhereNull('r.conf_output')
             })
+
     }
     Quality(knex: Knex, quality: any) {
         return knex('risk_incident as r')
