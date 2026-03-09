@@ -318,11 +318,11 @@ router.post('/', async (req: Request, res: Response, next) => {
             let message1 = loc[0].location_name;
             let message2 = agents_involved;
             let message3 = code_level;
-            let messages = 'สถานที่เกิด : [' + message1 + '] สรุปความเสียง : [' + message2 + '] ความรุ่นแรงระดับ :  [' + message3 + ']';
+            let messages = 'สถานที่เกิด : [' + message1 + '] \nสรุปความเสียง : [' + message2 + '] \nความรุ่นแรงระดับ :  [' + message3 + ']';
             // console.log(messages);
             // const rsx: any = botlineModel.botLine(messages);
-            const mophNotify = botlineModel.mophNotify(messages, 'TSRisk-Manager', 'xxx', 'xxx');
-
+            const mophNotify:any = await botlineModel.mophNotify(messages, 'TSRisk-Manager');
+            console.log(mophNotify);
 
             res.send({ ok: true, rows: rows, code: HttpStatus.OK });
 

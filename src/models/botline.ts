@@ -1,30 +1,7 @@
 const request = require("request");
 export class BotlineModel {
-    botLine(message) {
-        console.log('xxxxx');
 
-        request({
-            method: 'POST',
-            uri: 'https://notify-api.line.me/api/notify',
-            header: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            auth: {
-                // bearer: 'Rq2ta2TqDemOz5vak601weoXiq4VSrsSKKPm4GgO9G0', //token
-                bearer: '', //token
-            },
-            form: {
-                message: message, //ข้อความที่จะส่ง
-            },
-        }, (err, httpResponse, body) => {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log(body)
-            }
-        })
-    }
-    mophNotify(message: any, message_text: string, clientkey: any, secretkey: any) {
+    mophNotify(message: any, message_text: string) {
         let json_message: any = {
             messages: [
                 {
@@ -159,8 +136,8 @@ export class BotlineModel {
                     uri: 'https://morpromt2f.moph.go.th/api/notify/send',
                     headers: {
                         'Content-Type': 'application/json',
-                        'client-key': clientkey,
-                        'secret-key': secretkey,
+                        'client-key': 'clientkey',
+                        'secret-key': 'secretkey',
                     },
                     body: json_message, // ต้องเป็น { messages: [...] }
                     json: true,
