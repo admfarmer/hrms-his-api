@@ -62,7 +62,7 @@ export class BotlineModel {
                                 },
                                 {
                                     type: "text",
-                                    text: "Smart Refer System",
+                                    text: "Risk Management System",
                                     size: "xs",
                                     color: "#999999",
                                     align: "center",
