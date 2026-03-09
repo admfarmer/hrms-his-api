@@ -23,7 +23,7 @@ router.get('/', async (req: Request, res: Response, next) => {
 router.get('/select/:locationId', async (req: Request, res: Response, next) => {
     let db = req.db;
     let locationId = req.params.locationId;
-    console.log(locationId);
+    // console.log(locationId);
 
     try {
         let rows: any = await locationMoldel.select(db, locationId);

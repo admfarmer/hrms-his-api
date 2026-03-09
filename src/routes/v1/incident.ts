@@ -307,13 +307,13 @@ router.post('/', async (req: Request, res: Response, next) => {
     }
     try {
         let rows: any = await inciDentModels.add(db, datas);
-        console.log(rows);
+        // console.log(rows);
 
         if (rows[0]) {
 
             const loc: any = await locationMoldel.select(db, location_incident);
-            console.log(loc);
-            console.log(loc[0].location_name);
+            // console.log(loc);
+            // console.log(loc[0].location_name);
 
             let message1 = loc[0].location_name;
             let message2 = agents_involved;
@@ -426,8 +426,8 @@ router.post('/del', async (req: Request, res: Response, next) => {
 router.post('/botline', function (req: Request, res: Response, next) {
     var token = req.body.token;
     var message = req.body.message;
-    console.log(token);
-    console.log(message);
+    // console.log(token);
+    // console.log(message);
 
     request({
         method: 'POST',

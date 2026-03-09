@@ -25,7 +25,7 @@ router.get('/', async (req: Request, res: Response, next) => {
 });
 
 router.get('/users', async (req: Request, res: Response, next) => {
-    console.log("111111");
+    // console.log("111111");
     let db = req.db;
     try {
         let rows: any = await userModels.select(db);
