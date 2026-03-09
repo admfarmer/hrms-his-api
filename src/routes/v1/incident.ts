@@ -321,7 +321,7 @@ router.post('/', async (req: Request, res: Response, next) => {
             let messages = 'สถานที่เกิด : [' + message1 + '] \nสรุปความเสียง : [' + message2 + '] \nความรุ่นแรงระดับ :  [' + message3 + ']';
             // console.log(messages);
             // const rsx: any = botlineModel.botLine(messages);
-            const mophNotify:any = await botlineModel.mophNotify(messages, 'TSRisk-Manager');
+            let mophNotify:any = await botlineModel.mophNotify(messages, 'TSRisk-Manager');
             console.log(mophNotify);
 
             res.send({ ok: true, rows: rows, code: HttpStatus.OK });
