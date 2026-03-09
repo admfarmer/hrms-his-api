@@ -1,4 +1,5 @@
 const request = require("request");
+// import moment from 'moment-timezone';
 export class BotlineModel {
 
     mophNotify(message: any, message_text: string) {
@@ -49,35 +50,6 @@ export class BotlineModel {
                                     lineSpacing: "6px"
                                 },
 
-                                {
-                                    type: "separator",
-                                    margin: "lg"
-                                },
-
-                                {
-                                    type: "box",
-                                    layout: "horizontal",
-                                    margin: "md",
-                                    spacing: "md",
-                                    contents: [
-                                        {
-                                            type: "text",
-                                            text: `📅 ${moment().tz("Asia/Bangkok").format("YYYY-MM-DD")}`,
-                                            size: "sm",
-                                            color: "#555555",
-                                            flex: 1
-                                        },
-                                        {
-                                            type: "text",
-                                            text: `⏰ ${moment().tz("Asia/Bangkok").format("HH:mm:ss")}`,
-                                            size: "sm",
-                                            color: "#555555",
-                                            align: "end",
-                                            flex: 1
-                                        }
-                                    ]
-                                }
-
                             ]
                         },
 
@@ -112,8 +84,8 @@ export class BotlineModel {
                     uri: 'https://morpromt2f.moph.go.th/api/notify/send',
                     headers: {
                         'Content-Type': 'application/json',
-                        'client-key': 'clientkey',
-                        'secret-key': 'secretkey',
+                        'client-key': '5cefbcb8e1a993f42616efc478fd60ca12cff83a',
+                        'secret-key': 'STVALJIL3BEBTQUWV3UKY3DUEJ7I',
                     },
                     body: json_message, // ต้องเป็น { messages: [...] }
                     json: true,
