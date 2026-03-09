@@ -50,7 +50,7 @@ app.set('view engine', 'ejs');
 
 //uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname,'../public','favicon.ico')));
-app.use(logger('info'));
+app.use(logger('dev'));
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -65,7 +65,7 @@ let connection: MySqlConnectionConfig = {
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   multipleStatements: true,
-  debug: true
+  debug: false
 }
 
 let db = Knex({
@@ -80,7 +80,7 @@ let db = Knex({
       });
     }
   },
-  debug: true,
+  debug: false,
   acquireConnectionTimeout: 1500000
 });
 
