@@ -50,7 +50,7 @@ app.set('view engine', 'ejs');
 
 //uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname,'../public','favicon.ico')));
-app.use(logger('dev'));
+app.use(logger('info'));
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -140,7 +140,7 @@ app.use('/v1/affected', affectedRoute);
 //error handlers
 if (process.env.NODE_ENV === 'development') {
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    console.log(err.stack);
+    // console.log(err.stack);
     res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
       error: {
         ok: false,
