@@ -2,6 +2,9 @@ const request = require("request");
 export class BotlineModel {
 
     mophNotify(message: any, message_text: string) {
+        console.log(message);
+        console.log(message_text);
+
         let json_message: any = {
             messages: [
                 {
@@ -11,21 +14,6 @@ export class BotlineModel {
                         type: "bubble",
                         size: "mega",
 
-                        // header: {
-                        //     type: "box",
-                        //     layout: "vertical",
-                        //     paddingAll: "0px",
-                        //     contents: [
-                        //         {
-                        //             type: "image",
-                        //             url: "https://ubon.moph.go.th/wp-content/uploads/smart-refer/Logoe.png",
-                        //             size: "full",
-                        //             aspectMode: "cover",
-                        //             aspectRatio: "3120:885"
-                        //         }
-                        //     ]
-                        // },
-
                         body: {
                             type: "box",
                             layout: "vertical",
@@ -33,96 +21,84 @@ export class BotlineModel {
                             paddingAll: "lg",
                             contents: [
 
-                                // 🔹 ชื่อหน่วยบริการ
                                 {
                                     type: "box",
                                     layout: "vertical",
                                     backgroundColor: "#E7F0FF",
-                                    cornerRadius: "16px",
+                                    cornerRadius: "12px",
                                     paddingAll: "md",
                                     contents: [
                                         {
                                             type: "text",
                                             text: message_text,
-                                            align: "center",
                                             size: "lg",
                                             weight: "bold",
                                             color: "#1A237E",
+                                            align: "center",
                                             wrap: true
                                         }
                                     ]
                                 },
 
-                                // 🔹 รายละเอียดข้อความ
                                 {
                                     type: "text",
                                     text: message,
                                     size: "sm",
                                     color: "#444444",
                                     wrap: true,
-                                    lineSpacing: "6px",
-                                    adjustMode: "shrink-to-fit"
+                                    lineSpacing: "6px"
                                 },
 
-                                // 🔹 เส้นคั่น
                                 {
                                     type: "separator",
                                     margin: "lg"
                                 },
 
-                                // 🔹 วันที่ / เวลา
                                 {
                                     type: "box",
                                     layout: "horizontal",
                                     margin: "md",
+                                    spacing: "md",
                                     contents: [
                                         {
-                                            type: "box",
-                                            layout: "horizontal",
-                                            flex: 1,
-                                            contents: [
-                                                {
-                                                    type: "text",
-                                                    text: "วันที่",
-                                                    size: "sm",
-                                                    color: "#666666",
-                                                    flex: 0
-                                                },
-                                                {
-                                                    type: "text",
-                                                    text: moment().tz('Asia/Bangkok').format('YYYY-MM-DD'),
-                                                    size: "sm",
-                                                    weight: "bold",
-                                                    margin: "md"
-                                                }
-                                            ]
+                                            type: "text",
+                                            text: `📅 ${moment().tz("Asia/Bangkok").format("YYYY-MM-DD")}`,
+                                            size: "sm",
+                                            color: "#555555",
+                                            flex: 1
                                         },
                                         {
-                                            type: "box",
-                                            layout: "horizontal",
-                                            flex: 1,
-                                            contents: [
-                                                {
-                                                    type: "text",
-                                                    text: "เวลา",
-                                                    size: "sm",
-                                                    color: "#666666",
-                                                    flex: 0
-                                                },
-                                                {
-                                                    type: "text",
-                                                    text: moment().tz('Asia/Bangkok').format('HH:mm:ss'),
-                                                    size: "sm",
-                                                    weight: "bold",
-                                                    margin: "md"
-                                                }
-                                            ]
+                                            type: "text",
+                                            text: `⏰ ${moment().tz("Asia/Bangkok").format("HH:mm:ss")}`,
+                                            size: "sm",
+                                            color: "#555555",
+                                            align: "end",
+                                            flex: 1
                                         }
                                     ]
                                 }
 
                             ]
+                        },
+
+                        footer: {
+                            type: "box",
+                            layout: "vertical",
+                            contents: [
+                                {
+                                    type: "separator"
+                                },
+                                {
+                                    type: "text",
+                                    text: "Smart Refer System",
+                                    size: "xs",
+                                    color: "#999999",
+                                    align: "center",
+                                    margin: "sm"
+                                }
+                            ]
                         }
+
                     }
                 }
             ]
