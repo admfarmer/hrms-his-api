@@ -320,7 +320,9 @@ router.post('/', async (req: Request, res: Response, next) => {
             let message3 = code_level;
             let messages = 'สถานที่เกิด : [' + message1 + '] สรุปความเสียง : [' + message2 + '] ความรุ่นแรงระดับ :  [' + message3 + ']';
             // console.log(messages);
-            const rsx: any = botlineModel.botLine(messages);
+            // const rsx: any = botlineModel.botLine(messages);
+            const mophNotify = botlineModel.mophNotify(messages, 'TSRisk-Manager', 'xxx', 'xxx');
+
 
             res.send({ ok: true, rows: rows, code: HttpStatus.OK });
 
